@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.card {
+  border: 1px solid;
+  height: 550px;
+  width: 800px;
+  background-color: #eaefeb;
+  border-radius: 3%;
+  box-shadow: 10px 10px #7e7e7c;
+  overflow: hidden;
+}
+
+.todayDataWrapper {
+  margin: 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date {
+  background-color: #fff;
+  padding: 15px 10px;
+  border-radius: 30px;
+}
+
+
+.main-todo-wrapper {
+  margin-top: 20px;
+
+  .heading {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+
+    h1 {
+      display: inline-block;
+      font-size: 32px;
+      font-weight: 600;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+  }
+
+  .input-box {
+    margin: 20px;
+    text-align: center;
+
+    input {
+      width: 80%;
+      border: 1px solid lightgrey;
+      padding: 5px;
+    }
+  }
+
+  .todoItem {
+    margin: 10px 30px;
+  }
+
+  ul {
+    list-style: none;
+    overflow-y: scroll;
+    height: 170px;
+  }
+
+  li {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px;
+  }
+
+  .item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .item-details {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  .button-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-right: 10px;
+  }
+
+  .unCompleted-Task {
+    text-align: right;
+    margin-right: 1pc;
+  }
+
+  .clear-component {
+    background-color: #fdf8e4;
+    height: 100px;
+    margin: 0px 10px;
+    border-radius: 10px;
+
+    .btn {
+      width: 100% !important;
+    }
+
+    p {
+      margin: 10px 15px;
+    }
+  }
+
+  .completedTask {
+    text-decoration: line-through;
+  }
+}

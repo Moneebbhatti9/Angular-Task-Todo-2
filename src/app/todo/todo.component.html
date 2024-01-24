@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="card">
+    <div class="todayDataWrapper">
+      <div></div>
+      <div class="date">
+        <i class="bi bi-calendar"></i>{{ presentDateTime }}
+      </div>
+    </div>
+
+    <div class="main-todo-wrapper">
+      <div class="heading">
+        <div></div>
+        <h1>TODO LIST <i class="bi bi-pencil"></i></h1>
+        <div>
+          <input
+            type="checkbox"
+            class="form-check-input"
+            name="selectAll"
+            id="selectAll"
+            [(ngModel)]="selectAllChecked"
+            (change)="toggleAllCompleted()"
+          />
+          <span style="margin-left: 5px">Select All</span>
+        </div>
+      </div>
+
+      <div class="input-box">
+        <input
+          type="text"
+          placeholder="Things you want to do today?"
+          [(ngModel)]="newTodo"
+          (keyup.enter)="addOrUpdateTodo()"
+        />
+      </div>
+
+      <div class="todoItem">
+        <ul>
+          <li *ngFor="let todoItem of todo; let i = index">
+            <div class="item-row">
+              <div class="item-details">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [(ngModel)]="todoItem.completed"
+                  (change)="checkBoxIsChecked()"
+                />
+                <h4 [class.completedTask]="todoItem.completed">
+                  {{ todoItem.task }}
+                </h4>
+              </div>
+
+              <div class="button-wrapper">
+                <button
+                  class="btn btn-success btn-sm"
+                  type="button"
+                  (click)="startEditing(todoItem)"
+                >
+                  <i class="bi bi-pencil"></i> Edit
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  (click)="deleteTodo(i)"
+                >
+                  <i class="bi bi-trash"></i> Delete
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="unCompleted-Task">{{ uncompletedTask }} UnCompleted Task</div>
+
+      <div *ngIf="checkBoxIsChecked()" class="clear-component">
+        <button class="btn btn-warning" (click)="deleteCompletedTodo()">
+          Clear Completed
+        </button>
+        <p>You Have Selected an Item!</p>
+      </div>
+    </div>
+  </div>
+</div>
