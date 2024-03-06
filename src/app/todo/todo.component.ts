@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 interface Todo {
   id: number;
@@ -8,21 +8,21 @@ interface Todo {
 }
 
 @Component({
-  selector: 'app-todo',
-  templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css'],
+  selector: "app-todo",
+  templateUrl: "./todo.component.html",
+  styleUrls: ["./todo.component.css"],
 })
 export class TodoComponent {
-  presentDateTime: string = '';
+  presentDateTime: string = "";
   todo: Todo[] = [
     {
       id: 1,
-      task: 'Learn Typescript',
+      task: "Learn Typescript",
       completed: false,
       editing: false,
     },
   ];
-  newTodo: string = '';
+  newTodo: string = "";
   selectAllChecked: boolean = false;
 
   constructor() {
@@ -35,16 +35,13 @@ export class TodoComponent {
   };
 
   addOrUpdateTodo = () => {
-    if (this.newTodo.trim() !== '') {
-      // Check if editing existing task
+    if (this.newTodo.trim() !== "") {
       const existingTodo = this.todo.find((t) => t.editing);
 
       if (existingTodo) {
-        // If editing, update the task
         existingTodo.task = this.newTodo;
         existingTodo.editing = false;
       } else {
-        // If not editing, add a new task
         const newTodo: Todo = {
           id: this.todo.length + 1,
           task: this.newTodo,
@@ -55,26 +52,26 @@ export class TodoComponent {
         this.todo.push(newTodo);
       }
 
-      this.newTodo = ''; // Clear the input field
+      this.newTodo = "";
       this.updateUncompletedTasks();
     }
   };
 
   startEditing(todoItem: Todo) {
-    // Set editing to true and populate the input field with the task text
     todoItem.editing = true;
     this.newTodo = todoItem.task;
   }
 
   saveEditedTodo(todoItem: Todo) {
-    // Save changes when editing is complete
     todoItem.editing = false;
-    this.newTodo = ''; // Clear the input field
+    this.newTodo = ""; // Clear the input field
     this.updateUncompletedTasks();
   }
 
   toggleAllCompleted = () => {
-    this.todo.forEach((task) => (task.completed = this.selectAllChecked));
+    const areAllTasksCompleted = this.todo.every((task) => task.completed);
+    this.selectAllChecked = !areAllTasksCompleted;
+    this.todo.forEach((task) => (task.completed = !areAllTasksCompleted));
     this.updateUncompletedTasks();
   };
 
@@ -92,12 +89,9 @@ export class TodoComponent {
   };
 
   checkBoxIsChecked(): boolean {
-    const isChecked = this.todo.some((task) => task.completed);
-    if (isChecked) {
-      this.updateUncompletedTasks();
-    } else if (!isChecked) {
-      this.updateUncompletedTasks();
-    }
+    const isChecked = this.todo.every((task) => task.completed);
+    this.selectAllChecked = isChecked;
+    this.updateUncompletedTasks();
     return isChecked;
   }
 
